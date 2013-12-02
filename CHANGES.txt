@@ -1,0 +1,171 @@
++--------------------------+
+| Perl CyanChat Client 2.x |
++--------------------------+
+
+3.0  Jun 21 2007
+     - Made some changes to the Debug Window:
+       - The output filehandles (STDOUT; STDERR) are no longer bound to this window; they're
+         sent to the terminal (if present) like default.
+       - Only CC packets are displayed in the Debug Window. Server packets are in blue text,
+         and client packets are in red.
+     - Changed the default Special Guest color back to orange, and the action color back
+       to yellow.
+     - Built in support for "profiles." Your configuration, ignore lists, and chat logs
+       are now saved in your home directory instead of in PCCC's directory. So on Linux
+       this means /home/username/.pccc, and WinXP is C:/Documents and Settings/user/PCCC
+     - Made a minor edit to the Net::CyanChat library, so that it can detect when the
+       server has banned you from the room.
+     - Added support for sound effects. It uses the Win32::MediaPlayer module on Windows,
+       or the system command `play` on Linux.
+     - Added a "Force Quit" command under the File Menu. It's disabled by default. When
+       you attempt at least once to exit the program properly, and it for whatever reason
+       fails to exit, the Force Quit option becomes enabled. Alternatively, the keyboard
+       shortcut Ctrl+Alt+Q will kill the program.
+     - Moved the configuration options for MutualIgnore, LoudIgnore, and SendIgnore to
+       the bottom of the "Ignored Users" tab.
+     - Created a "Sounds" tab, with configurable options for:
+       - Enable sounds -- disable this, and all sounds are disabled.
+       - Play sounds on certain events...
+         - When a user joins the room
+         - When a user exits the room
+         - When a public message is received
+         - When a private message is received
+     - Added a "Mute sounds" option to the bottom of the Chat menu. This option will
+       temporarily disable sounds, but not permanently save this state to your config
+       file.
+     - Changed how action messages ("/me") and typo messages appear. The new style is:
+       Action Messages:   ** Nickname performs an action **
+       Typo Messages:     [Nickname] *their typo correction
+       All the text is in the action text color except for the nickname, and in the case
+       of typo messages, the brackets around the nick. In typo corrections, the user's exact
+       message is shown as usual, just in yellow text instead of silver.
+     - Reprogrammed the entire help system. It now uses Tk::HyperText and renders HTML
+       documents from the "docs" folder. Also, added an "About" menu option to the Help menu,
+       which opens the appropriate page in the Help Viewer. Also, "Help" buttons on the
+       Preferences window will load the appropriate page in the Help Viewer too.
+     - Bug fix: when copying/pasting text from an outside source (e.g. from a web page)
+       into the typing space, the newline characters would be preserved when they shouldn't
+       be. Sending the message would result in getting banned from Cho. This has been fixed
+       now, as the characters \x0d (Cr) and \x0a (Lf) are filtered out of your message.
+     - Bug fix: got rid of the right-click context menus on the Who List. For Windows users,
+       right-clicking and bringing up this menu would pause the main program loop, effectively
+       preventing PCCC from polling the server for new events. The GUI would still work just fine,
+       but the loop wouldn't work anymore.
+
+2.8  Jun  1 2007
+     - Removed the "highlight borders" on the widgets, so that Linux and Mac users don't
+       have to see those ugly borders around i.e. the "Autoscroll" check box, as well as
+       buttons and text boxes.
+     - Redesigned the preferences window.
+     - Added the option of *not* showing private messages in new IM windows. When the
+       option is disabled, private messages only show up in IM windows if an IM window
+       already exists, and the only way to create an IM window is to double-click a name
+       in the Who List.
+     - Added right-click context menus to the Who List. Right-clicking a user displays a
+       context menu along the lines of:
+          Username:address
+          ----------------
+          Send private message
+          Ignore user
+       ... or "Unignore user" if you already ignored them.
+     - Added an "Ignored Users" tab to the Preferences window, where you can view your
+       ignore list, adding or removing users if necessary.
+     - Added "Notifications" -- when a new message arrives (in public chat or private
+       message windows), and the window is out of focus or minimized, the window title
+       will animate to get your attention.
+     - Added an "Auto-logging" option, which will automatically log all messages received
+       in chat. It saves them into "./logs/yyyy-mm-dd/yyyymmdd-x.html", where yyyymmdd is a
+       date stamp, and x is a session number starting from 1, which increments each time PCCC
+       is run.
+     - Bug Fixes:
+       - Fixed the "disappearing name" bug (where you'd log in to chat, open the Preferences
+         window, hit Cancel, and your nick in the Name: box would revert to the "default nick"
+         from the preferences, which is blank by default).
+     - Added configuration options:
+       - TimeStamps: show time stamps on all messages.
+       - IMWindows: show private messages in new "IM" windows
+
+2.7  May 23 2007
+     - The client now assumes "htmlview" as the default "Browser Command" when you're not
+       on Windows and there is no config file yet. Otherwise, the default is "start"
+
+2.6  Apr 14 2007
+     - Added the "Browser Command" option, to specify the console command used to open your
+       web browser. Windows users can just leave this as "start", but Linux users will have
+       to specify "firefox", "mozilla", or another command.
+     - Added a "Reverse Orientation" option. Users that are familiar with most traditional
+       chat programs, in which the message typing space is below the conversation space,
+       will want to enable this option (in conjunction with unchecking "Reverse chat dialog").
+     - Made the Preferences and Enter Raw Command windows a little bit bigger. The "Ok"
+       button was being squished on Linux, and the Enter Raw Command's buttons weren't even
+       visible before.
+     - Updated the help file with information about the new options added.
+
+2.5  Mar  1 2007
+     - Two more Frame widgets added to the user interface. Now the window "scales" better
+       (when you maximize the window, the input box stays at the top and the dialog window
+       stretches to fill all the remaining space; previously, the dialog window and input
+       box would fight for the new space, causing a lot of unnecessary padding above and below
+       the input box).
+     - Added hyperlinking support for the main chat dialog window (but not yet for private
+       message windows).
+
+2.4  Jan 29 2007
+     - Added a checkbutton to enable/disable the automatic scrolling of the chat window when
+       new messages are received.
+     - The "Disconnect" menu option is disabled from the start if you are not connected yet,
+       like it should've been.
+     - The Who List gets wiped clean when you disconnect from the server. The lack of doing this
+       used to cause problems where people in the Who List weren't actually in the chat room,
+       so clearing the list fixes this problem.
+     - Made sure I don't forget to include the latest version of Net::CyanChat in the source
+       distribution this time. ;)
+
+2.3  Nov  7 2006
+     - Minor bug fixes.
+
+2.2  Oct 30 2006
+     - Added more color variables: the main window background/foreground and the button
+       background/foreground is now configurable separate from the rest of the screen.
+       The WhoList can have a different background than the dialog window.
+     - The "Save Transcript" now saves the conversation as XHTML, keeping the colors of the chat.
+       If you save it to a text file, it ignores the formatting (the old behavior of PCCC).
+     - Action messages have changed display formats:
+         Old Way: *** [username] action ***
+         New Way: [username] action in yellow ("action") text color
+     - Outgoing private messages are echoed in the chat dialog window, even if you sent them in
+       a separate PM window.
+     - Added some new configuration options:
+       - AutoAct: when a message starts and ends with *'s, it will be treated like a /me action.
+       - LoudTypo: when a message starts with a * (typically for typo corrections), a notification
+         will be shown about the typo being corrected.
+     - Added a full documentation system. Click "Help -> Contents"
+     - Bug fixes:
+       - Private message windows now auto-scroll.
+
+2.1  Oct 24 2006
+     - Added new configuration options:
+       - AutoJoin:    automatically join the room on connect (if Nickname has a length)
+       - BlockServer: ignore private messages from ChatServer (when on debug port 1813)
+       - LoudIgnore:  show a notification when somebody blocks you
+       - SendIgnore:  send the ignore command to the server when you ignore somebody
+       - IgnoreBack:  perform a mutual ignore when ignored (ignore the one ingoring you)
+     - Added the ability to reset the configuration to the defaults.
+     - The entire window now recolors itself when you change color settings (rather than just
+       the conversation window)
+     - A disconnect handler has been added so the client knows when you've been disconnected
+       from the chat server.
+     - Added the ability to automatically reconnect on disconnect. This functionality is limited
+       though. It won't keep trying. But this will solve the quick temporary disconnects experienced
+       on wireless Internet connections.
+     - A few bugs have been fixed:
+       - The Preferences window now has a fixed default width and height. Previously, it
+         was leaving it up to the window contents to automatically adjust its size, but this
+         didn't work on *nix platforms and the window was too small.
+       - The "Connection Details" window has a fixed default width and height too, for same reasons.
+       - Private Message windows will come back now. Previously, if you opened a private message
+         window with somebody, then closed that window, you couldn't reopen it (unless the other
+         person sent you a message to open the window).
+
+2.0  Oct  1 2006
+     - Initial release.

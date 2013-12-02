@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Using PCCC</title>
+</head>
+<body bgcolor="#FFFFEE" link="#0000FF" vlink="#990099" alink="#009900" text="#000000">
+<basefont face="Arial" size="3" color="#000000">
+
+<h1>Getting Started with PCCC</h1>
+
+When you start up the Perl CyanChat Client, you will be presented with the
+ Main Window, where a message by "<font color="#FF0000">ChatClient</font>" is
+ already visible on screen, welcoming you to PCCC.<p>
+
+To <b>connect</b> to the CyanChat room, select "Connection" from the menu bar,
+ and choose "Connect". This will attempt to connect you to the CyanChat server.
+ Once connected, you will see a lot of "lobby messages" sent by
+ "<font color="#009900">ChatServer</font>", and moments later the Who List will
+ display the list of users logged into the chat room (if there are any logged in).
+
+<h1>Chat Presence</h1>
+
+To <b>enter the chat</b>, type in a nickname for yourself in the "Name:" box, and
+ then press the "Join Chat" button. Note that your nickname <u>must</u> be less than
+ 20 characters long, and <u>cannot</u> contain a caret (^), pipe symbol ("|"), or a
+ comma. If your name is accepted by the server, you will "link in" to the room. Otherwise,
+ <font color="#009900">ChatServer</font> will tell you that your nick was invalid.<p>
+
+When a user <b>links in</b> to the chat room (in other words, enters the room), a message
+ will display similar to the following:
+
+<blockquote>
+	\\\\\[Nick] &lt;links in from somewhere on the internet Age&gt;////
+</blockquote>
+
+When a user <b>links out</b> of the chat room (in other words, exiting the room by
+ clicking the "Exit Chat" button), a message will display similar to the following:
+
+<blockquote>
+	/////[Nick] &lt;links safely back to their home Age&gt;\\\\\
+</blockquote>
+
+Finally, when a user <b>disconnects</b> from the chat room, the following message
+ is displayed:
+
+<blockquote>
+	/////[Nick] &lt;mistakenly used an unsafe linking book without a maintainer's suit
+	 *ZZZZZWHAP*&gt;\\\\\
+</blockquote>
+
+All users in the chat room also have a unique <b>address</b> assigned to them. This
+ is a mangled up form of their IP address, so multiple nicks from the same computer
+ will probably have the same address. To see a user's address, right-click their name
+ in the Who List.
+
+<h1>Standard Messaging</h1>
+
+To send a message to the chat room, simply type it into the entry box at the top of the
+ Main Window and press the Return key. Note that you must be logged in before you can
+ send messages!<p>
+
+See <a href="pm.html">Private Messaging</a> and <a href="action.html">Action Messages</a>
+ for information about different types of messaging.
+
+</body>
+</html>
