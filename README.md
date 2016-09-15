@@ -1,5 +1,15 @@
 # Perl CyanChat Client
 
+![Screenshot](https://raw.githubusercontent.com/kirsle/PCCC/master/screenshot.png)
+
+CyanChat was a chat room run by [Cyan, Inc.](http://cyan.com/), creators of
+games such as Myst and Riven, and after 17 years, the chat servers are
+no longer online.
+
+[Farewell, CyanChat!](http://mystonline.com/forums/viewtopic.php?p=402386)
+
+--------------------------------------------------------------------------------
+
 ## I. About PCCC
 
 Perl CyanChat Client 2.x is a complete rewrite from the original
